@@ -41,4 +41,9 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
     // Rules
     // --------------------------------------------------------------------
+    public array $vacancyCreate = [
+      'role' => 'required',
+      'description' => 'required',
+      'expires_at' => 'required|valid_date'
+    ];
 }
