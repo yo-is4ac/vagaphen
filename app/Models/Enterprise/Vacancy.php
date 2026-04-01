@@ -12,11 +12,12 @@ class Vacancy extends Model
     protected $table            = 'vacancies';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = false;
-    protected $returnType       = 'array';
+    protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
       'id',
+      'code',
       'role',
       'description',
       'expires_at'
