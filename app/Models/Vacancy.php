@@ -16,7 +16,6 @@ class Vacancy extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-      'id',
       'code',
       'role',
       'description',

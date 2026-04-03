@@ -23,8 +23,8 @@ class VacancyController extends BaseController
   public function store() {
     $data = $this->request->getJSON(true);
 
-    if (! $this->validateData($data, config('Validation')->vacancyCreate)) {
-      return $this->response->setStatusCode(400)->setJSON($this->request->getJSON(true));
+    if (! $this->validateData($data, config('Validation')->vacancyStore)) {
+      return $this->response->setStatusCode(400)->setJSON($this->validator->getErrors());
     }
     
     $data['code'] = substr(Uuid::uuid4(), 0, 4);

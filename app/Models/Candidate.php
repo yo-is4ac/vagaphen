@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use Michalsn\CodeIgniterUuid\Traits\HasUuid;
 
 class Candidate extends Model
 {
+    use HasUuid;  
+
     protected $table            = 'candidates';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = false;
@@ -13,10 +16,8 @@ class Candidate extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-      'id',
       'vacancies_id',
       'curriculum_path',
-      'status',
     ];
 
     protected bool $allowEmptyInserts = false;
