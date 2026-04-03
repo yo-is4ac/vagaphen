@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Enterprise;
+namespace App\Models;
 
 use CodeIgniter\Model;
 use Michalsn\CodeIgniterUuid\Traits\HasUuid;

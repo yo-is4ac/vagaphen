@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Controllers\Enterprise;
+namespace App\Controllers\Api;
 
 use App\Controllers\BaseController;
-use App\Models\Enterprise\Vacancy;
-use App\Transformers\Enterprise\Vacancy\VacancyTransform;
+use App\Models\Vacancy;
+use App\Transformers\VacancyIndexTransform;
 use Ramsey\Uuid\Uuid;
 
 class VacancyController extends BaseController
 {
   public function index() {
     $vacancyModel = new Vacancy();
-    $vacancyTransform = new VacancyTransform();
+    $vacancyTransform = new VacancyIndexTransform();
 
     $vacancies = array_map(function ($vacancy) use ($vacancyTransform) {
       return $vacancyTransform->transform($vacancy);

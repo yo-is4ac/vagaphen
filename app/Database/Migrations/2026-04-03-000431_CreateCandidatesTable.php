@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Database\Migrations\Enterprise;
+namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateVacanciesTable extends Migration
+class CreateCandidatesTable extends Migration
 {
     public function up()
     {
@@ -14,19 +14,20 @@ class CreateVacanciesTable extends Migration
           'constraint' => 36,
           'null'=> false,
         ],
-        'code' => [
+        'vacancies_id' => [
           'type' => 'CHAR',
-          'constraint' => '4',
-          'null' => true
+          'constraint' => 36,
+          'null' => false
         ],
-        'role' => [
-          'type' => 'VARCHAR',
+        'curriculum_path' => [
+          'type' => 'CHAR',
           'constraint' => 255,
-          'null' => false,
+          'null' => false
         ],
-        'description' => [
-          'type' => 'TEXT',
-          'null' => false,
+        'status' => [
+          'type'       => 'ENUM',
+          'constraint' => ['pending', 'approved', 'declined'],
+          'default'    => 'pending',
         ],
         'created_at' => [
           'type' => 'datetime',
@@ -36,17 +37,14 @@ class CreateVacanciesTable extends Migration
           'type' => 'datetime',
           'null' => true,
         ],
-        'expires_at' => [
-          'type' => 'datetime',
-          'null' => false
-        ],
       ]);
       $this->forge->addPrimaryKey('id');
-      $this->forge->createTable('vacancies');
+      $this->forge->addForeignKey('vacancies_id', 'vacancies', 'id', 'CASCADE', 'CASCADE');
+      $this->forge->createTable('candidates');
     }
 
     public function down()
     {
-      $this->forge->dropTable('vacancies');
+      $this->forge->dropTable('candidates');
     }
 }

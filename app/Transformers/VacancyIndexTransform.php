@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Transformers\Enterprise\Vacancy;
+namespace App\Transformers;
 
-class VacancyTransform {
+class VacancyIndexTransform {
   public function transform($vacancy) {
     return [
         'code' => $vacancy->code,
