@@ -41,14 +41,4 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
     // Rules
     // --------------------------------------------------------------------
-    public array $vacancyStore = [
-      'role' => 'required',
-      'description' => 'required',
-      'expires_at' => 'required|valid_date'
-    ];
-
-    public array $candidateStore = [
-      'code' => 'required',
-      'curriculum_path' => 'required',
-    ];
 }

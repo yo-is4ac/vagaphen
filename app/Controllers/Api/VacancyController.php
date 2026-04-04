@@ -21,17 +21,13 @@ class VacancyController extends BaseController
   }
 
   public function store() {
-    $data = $this->request->getJSON(true);
+    $data = $this->request->getJSON(false);
 
-    if (! $this->validateData($data, config('Validation')->vacancyStore)) {
-      return $this->response->setStatusCode(400)->setJSON($this->validator->getErrors());
-    }
-    
-    $data['code'] = substr(Uuid::uuid4(), 0, 4);
+    $data->code = substr(Uuid::uuid4(), 0, 4);
 
     $vacancyModel = new Vacancy();
     $vacancyModel->save($data);
     
-    return $this->response->setStatusCode(201)->setJSON(['message' => 'New Vacancy Created']);
+    return $this->response->setStatusCode(201)->setJSON(['message' => 'Vacancy Created']);
   }
 }
