@@ -9,63 +9,22 @@ use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
-    public function __construct(
-        private Application $applicationModel,
-        private Position $positionModel
-    ){}
+  public function __construct(
+    private Application $applicationModel,
+    private Position $positionModel
+  ){}
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(
-    )
-    {
-        //
-    }
+  /**
+   * Store a newly created resource in storage.
+   */
+  public function store(string $code, Request $request)
+  {
+    $path = $request->file('resume')->store('resumes');
+    $positionId = $this->positionModel->where('code', $code)->first()->id;
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(string $code, Request $request)
-    {
-        $path = $request->file('resume')->store('resumes');
-        $positionId = $this->positionModel->where('code', $code)->first()->id;
-
-        $this->applicationModel->create([
-            'position_id' => $positionId,
-            'resume_path' => $path,
-        ]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $code)
-    {
-        return $this->positionModel->where('code', $code)->first()->applications;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    $this->applicationModel->create([
+        'position_id' => $positionId,
+        'resume_path' => $path,
+    ]);
+  }
 }
