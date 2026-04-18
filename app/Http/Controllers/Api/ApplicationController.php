@@ -26,10 +26,10 @@ class ApplicationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(string $code, Request $request)
     {
         $path = $request->file('resume')->store('resumes');
-        $positionId = $this->positionModel->where('code', $request->code)->first()->id;
+        $positionId = $this->positionModel->where('code', $code)->first()->id;
 
         $this->applicationModel->create([
             'position_id' => $positionId,
